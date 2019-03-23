@@ -74,6 +74,7 @@ class Indexx extends CI_Controller {
 	}
 
 	public function sup_tache()
+	//
 
 	{   //supprime la tache selectionnee
 		$idtache = $this -> uri -> segment(3);
@@ -89,6 +90,7 @@ class Indexx extends CI_Controller {
 	}
 
 	public function conf_supp_tache()
+	//affiche la tache lors de la suppression
 	{
 		$idtache = $this -> uri -> segment(3);
 		$this->load->model('insertion_bdd');
