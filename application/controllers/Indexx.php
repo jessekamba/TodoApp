@@ -96,10 +96,50 @@ class Indexx extends CI_Controller {
 		$this->load->model('insertion_bdd');
 		$resultat['res']=$this->insertion_bdd->afficher_tache($idtache);
 		$this->load->view('confirmation_supp_tache',$resultat);
-		 
-		
 
 	}
+
+	public function lien_modifier_tache()
+	{
+		$id=$_GET['id'];
+	 
+		$this->load->view('modifier_tache.php');
+	}
+
+	public function conf_modif_tache()
+	{
+		#todo
+		$idtache = $this -> uri -> segment(3);
+		$this->load->model('insertion_bdd');
+		$resultat['res']=$this->insertion_bdd->afficher_tache($idtache);
+		$this->load->view('conf_modif_tache',$resultat);
+	
+	}
+
+
+	public function modif_tache()
+	{
+		 $id=$_GET['id'];
+		$description=$this->input->post('description');
+			$date_debut=$this->input->post('date_debut');
+			$date_fin=$this->input->post('date_fin');
+
+			$datas= array(
+				'date_debut'=>$date_debut,
+				'date_fin'=>$date_fin,
+				'description'=>$description
+
+			);
+			$this->load->model('insertion_bdd');
+			$this->insertion_bdd->modifier_tache($id,$datas);
+			echo "tache modifiée avec succes";
+			 
+
+
+	}
+
+		
+	
  
 	 
 }

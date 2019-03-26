@@ -32,5 +32,13 @@ class insertion_bdd extends CI_Model
       
 
     }
+
+    public function modifier_tache($id,$datas)
+
+
+    {
+        $this->db->where('id',$id);
+        $this->db->update($this->table,$datas);
+    }
 }
  

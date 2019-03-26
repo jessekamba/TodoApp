@@ -18,7 +18,7 @@ $i=1;
      echo $i.'.'.' ';
      echo 'du' . ' '.$value->date_debut.' '.' '.'au'.' ' ;
      echo $value->date_fin.' ';
-     echo  $value->description.   '   ||   '   ."   " . ''.'<a href="'.site_url('indexx/conf_supp_tache/'.$value -> id).'">supprimer</a><br/><br/>'; 
+     echo  $value->description.   '   ||   '   ."   " . ''.'<a href="'.site_url('indexx/conf_supp_tache/'.$value -> id).'">supprimer</a> || <a href="'.site_url('indexx/conf_modif_tache/'.$value -> id).'"> Modifier</a><br/><br/>'; 
     
    
     
