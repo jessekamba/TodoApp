@@ -6,10 +6,43 @@ class Indexx extends CI_Controller {
 	 
 	public function index()
 	{	//affiche la page d'acceuil
-		// $this->load->view('acceuil');
-		$this->load->model('insertion_bdd');
-		$donnee ['tache']=$this->insertion_bdd->recupere_datas();
-		$this->load->view('acceuil',$donnee);
+		
+		$this->load->view('AcceuilUser');
+	}
+
+	public function add_user()
+	{
+		$this->form_validation->set_rules('pseudo','pseudo', 'required|min_length[5]',
+		array('required' => 'Veuillez entrer un pseudo',
+			  'min_length' => '5 caractères minimum'));
+
+		$this->form_validation->set_rules('mdp','mdp', 'required|min_length[5]',
+		array('required' => 'Veuillez entrer un mot de passe',
+			  'min_length' => '5 caractères minimum'));
+
+		
+		
+		if($this->form_validation->run())
+	 
+		{
+
+			$pseudo=$this->input->post('pseudo');
+			$mdp=$this->input->post('mdp');
+			
+			$datas= array(
+			  'pseudo'=>$pseudo,
+			   'mdp'=>$mdp);
+
+		  $this->load->model('UserModele');
+		  $this->UserModele->create_user($datas);
+		  
+	  }
+
+		else
+		  {
+			$this->load->view('AcceuilUser');
+		  }
+
 	}
 
 	public function lien_nouvelle_tache()
@@ -35,13 +68,13 @@ class Indexx extends CI_Controller {
 		{
 
 			$description=$this->input->post('description');
-			$date_debut=$this->input->post('date_debut');
-			$date_fin=$this->input->post('date_fin');
+			 
 
 			$datas= array(
-				'date_debut'=>$date_debut,
-				'date_fin'=>$date_fin,
-				'description'=>$description
+				'description'=>$description,
+				 'etat'=>1,
+				 
+				 'datecreation'=>date('d-M-Y')
 
 			);
 			$this->load->model('insertion_bdd');
