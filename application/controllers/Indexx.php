@@ -45,6 +45,42 @@ class Indexx extends CI_Controller {
 
 	}
 
+	public function authentification()
+	{
+		
+		$pseudo=$this->input->post('pseudo');
+		$mdp=$this->input->post('mdp');
+		
+		$datas= array(
+			'pseudo'=>$pseudo,
+			 'mdp'=>$mdp);
+			
+			 $this->load->model('UserModele');
+			 $check = $this->UserModele->check_user($datas);
+
+			 if(count($check) > 0){
+                $user = $check[0];
+                $datas= array(
+                    'id' => $user->id,
+                    'pseudo' => $user->pseudo,
+                    'mdp' => $user->mdp,
+                 
+                    'is_connected' => true
+                );
+                $this->session->set_userdata($datas);
+              echo "vous etes connecte";
+
+			}
+			else{
+                $datas = array(
+                    'error_login' => 'Login ou mot de passe incorrect'
+                );
+                
+                $this->session->set_flashdata($datas);
+                redirect('indexx/index');
+            }
+	}
+
 	public function lien_nouvelle_tache()
 	{
 		$this->load->view('nouvelle_tache.php');

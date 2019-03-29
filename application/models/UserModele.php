@@ -10,4 +10,12 @@ class UserModele extends CI_Model
         $this->db->insert($this->table, $infos);
     }
 
+    public function check_user($data)
+    {
+        $this->db->where($data);
+        $query = $this->db->get($this->table);
+        $resultat = $query->result();
+        return  $resultat;
+    }
+
 }
