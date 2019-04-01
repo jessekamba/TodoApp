@@ -35,6 +35,7 @@ class Indexx extends CI_Controller {
 
 		  $this->load->model('UserModele');
 		  $this->UserModele->create_user($datas);
+		  $this->load->view('AcceuilView');
 		  
 	  }
 
@@ -44,6 +45,8 @@ class Indexx extends CI_Controller {
 		  }
 
 	}
+
+	 
 
 	public function authentification()
 	{
@@ -83,7 +86,7 @@ class Indexx extends CI_Controller {
 
 	public function lien_nouvelle_tache()
 	{
-		$this->load->view('nouvelle_tache.php');
+		$this->load->view('nouvelle_tacheView');
 	}
 
 	public function insertion()
