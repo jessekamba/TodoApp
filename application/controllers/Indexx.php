@@ -14,6 +14,23 @@ class Indexx extends CI_Controller {
 	{
 			$this->load->view('CreateAccountView');
 	}
+
+	public function charger_vue_AcceuilUserView()
+
+	{		
+		
+		if($this->session->connected)
+		{
+		$id_user = $this->session->id;
+		$this->load->model('UserModele');
+		$tache = $this->UserModele-> check_user($id_user);
+	   
+		// $data = array("budget"=> $budget);
+
+		// $this->load->view('header');
+		// $this->load->view('utilisateur/accueil', $data);}
+			$this->load->view('AcceuilUserView');}
+	}
 	public function add_user()
 
 	{	
@@ -24,6 +41,9 @@ class Indexx extends CI_Controller {
 		$this->form_validation->set_rules('mdp','mdp', 'required|min_length[5]',
 		array('required' => 'Veuillez entrer un mot de passe',
 			  'min_length' => '5 caractères minimum'));
+			  
+		$this->form_validation->set_rules('mdpConf', 'mdpConf', 'matches[mdp]',
+			  array('matches' => 'Mot de passe incohérent'));
 
 		if($this->form_validation->run()) 
 	 
@@ -31,16 +51,17 @@ class Indexx extends CI_Controller {
 				
 				$pseudo=$this->input->post('pseudo');
 				$mdp=$this->input->post('mdp');
-				
+				$mdpconf = $this->input->post('mdpconf');
 				$datas= array(
-				'pseudo'=>$pseudo
+				'pseudo'=>$pseudo,
+				'mdp'=>$mdp
 				);
 
 				$this->load->model('UserModele');
 				$check = $this->UserModele->check_user($datas);
 	
 				if(count($check) > 0)
-				{
+				{  
 					echo"login deja utilisé" ;
 				}
 				else
@@ -78,19 +99,20 @@ class Indexx extends CI_Controller {
                     'pseudo' => $user->pseudo,
                     'mdp' => $user->mdp,
                  
-                    'is_connected' => true
+                    'connected' => true
                 );
                 $this->session->set_userdata($datas);
-              echo "vous etes connecte";
+				redirect('indexx/charger_vue_AcceuilUserView');
 
 			}
 			else{
-                $datas = array(
-                    'error_login' => 'Login ou mot de passe incorrect'
+				$d = array(
+                    'error_message' => 'Login ou mot de passe incorrect'
                 );
-                
-                $this->session->set_flashdata($datas);
+			  
+                $this->session->set_flashdata($d);
                 redirect('indexx/index');
+		 
             }
 	}
 
@@ -99,28 +121,25 @@ class Indexx extends CI_Controller {
 		$this->load->view('nouvelle_tacheView');
 	}
 
-	public function insertion()
+	public function nouvelle_tache()
 		/// verifie si les champs sont remplis et si la taille correspond a celle specifiee puis rentre dans la bdd
 		{
 		$this->form_validation->set_rules('description','description', 'required|min_length[5]',
 		array('required' => 'La description de la tache est obligatoire',
 			'min_length' => '5 caractères minimum'));
 
-		$this->form_validation->set_rules('date_debut', 'date_debut', 'required|min_length[10]',
-			array('required' => 'la date de debut de la tache est obligatoire',
-				'min_length' => ' votre tache doit avoir une date de debut'));
-		
-		$this->form_validation->set_rules('date_fin', 'date_fin', 'required|min_length[10]',
-				array('required' => 'la date de la fin de la tache est obligatoire',
-					'min_length' => ' votre tache doit avoir une date de fin'));
+		 
 		if($this->form_validation->run())
 		{
 
 			$description=$this->input->post('description');
+			$id_user = $this->session->id;
+			$this->load->model('UserModele');
+			$tache = $this->UserModele-> check_user($id_user);
 			 
-
 			$datas= array(
 				'description'=>$description,
+				'id_user'=>$id_user,
 				 'etat'=>1,
 				 
 				 'datecreation'=>date('d-M-Y')
@@ -128,12 +147,12 @@ class Indexx extends CI_Controller {
 			);
 			$this->load->model('insertion_bdd');
 			$this->insertion_bdd->insert_into_bdd($datas);
-			$this->load->view('creation_tache_success');
+			 
 		}
 
 		else
         {
-            $this->load->view('nouvelle_tache');
+            $this->load->view('nouvelle_tacheView');
         }
 
 	}

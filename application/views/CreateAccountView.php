@@ -70,9 +70,9 @@
                                     
                                     <div class="md-form">
                                         <i class="fa fa-lock prefix"></i>
-                                        <input type="password" name="mdpConf" class="form-control" value="<?=set_value('mdpconf')?>"  >
+                                        <input type="password" name="mdpConf" class="form-control" value="<?=set_value('mdpConf')?>"  >
                                         <label for="form3">Confirmer mot de passe</label>
-                                        <?= form_error('mdp','<em>','</em>') ?>
+                                        <?= form_error('mdpConf','<em>','</em>') ?>
                                     </div>
 
                                     <div class="text-xs-center ">

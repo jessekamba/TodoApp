@@ -97,7 +97,7 @@
         <div class="container ">
                <br><br><br>
 
-         <form action="" method="POST">
+         <form action="<?=site_url('indexx/nouvelle_tache')?>" method="POST">
                     <div class="card">
                         <div class="card-block">
                     
@@ -108,9 +108,13 @@
                     
                             <!--Body-->
                            <div class="md-form">
-                                <i class="fa fa-edit"></i>
-                                <input type="text" id="form3" class="form-control" required>
+                                <i class="fa fa-edit"></i> 
+                                <input type="text" name="description"id="form3" class="form-control" value="<?=set_value('description')?>">
                                 <label for="form3">Description de la tache</label>
+                                <div class="alert alert-danger">
+                                    <?= form_error('description','<em>','</em>') ?>
+                                </div>
+
                             </div>
                             
                             <div class="text-xs-center ">

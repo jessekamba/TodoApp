@@ -51,7 +51,18 @@
                                     <!--Header-->
                                     <div class="form-header blue-gradient">
                                         <h3><i class="fa  fa-user prefix"></i> Se connecter</h3>
+                                       
                                     </div>
+                                  <!-- <div class="text-xs-center">
+                                        <?php if($this->session->error_message): ?>
+                                            <div class="alert alert-danger">
+                                                <?= $this->session->error_message; ?>
+                                             </div> 
+                                    </div>
+                                    <?php endif; ?> -->
+
+                                  <!--  -->
+                                  
                             
                                     <!--Body-->
                                 <div class="md-form">
