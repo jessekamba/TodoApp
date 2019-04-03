@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>TodoApp</title>
+    <title>TodoApp|<?=$this->session->pseudo?></title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?=base_url('MDB4/css/font-awesome.min.css')?>">
@@ -42,7 +42,7 @@
                         <div class="collapsible-body">
                             <ul>
                                 <li>
-                                    <a href="#" class="waves-effect "><i class="fa fa-plus"></i>Ajouter une tache</a>
+                                    <a href="<?= site_url('indexx/lien_nouvelle_tache')?>" class="waves-effect "><i class="fa fa-plus"></i>Ajouter une tache</a>
                                 </li>
                                 <li>
                                     <a href="#" class="waves-effect"><i class="fa fa-align-justify"></i>Lister mes taches</a>
@@ -78,9 +78,9 @@
 
                
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Profile</a>
+                    <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  <i class="fa fa-user"></i> <?=$this->session->pseudo?> </a>
                     <div class="dropdown-menu dropdown-primary dd-right" aria-labelledby="dropdownMenu1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                        <a class="dropdown-item" href="#">Se deconnecter</a>
+                        <a class="dropdown-item" href="<?=site_url('indexx/deconnexion')?>">Se deconnecter</a> 
                         
                          
                     </div>
@@ -96,19 +96,77 @@
     <main>
         <div class="container ">
                
-                <div style="height: 300px"></div>
-              
-           
-           
+                           
+                <!-- <div style="height: 300px"></div> -->
+                <table class="table  table-bordered table-danger table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>N</th>
+                            <th>Nom de la tache</th>
+                            <th>Date creation</th>
+                            <th>Etat</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $i=1;
+                    foreach ($tache as $value) 
+                    {
+                      echo '<tr class="table-success">';
+                        echo '<td>'.$i .'</td>';
+                        echo '<td>'. $value->description . '</td>';
+                        echo '<td>'.$value->datecreation.'</td>';
+                        echo '<td>'.$value->etat.'</td>'; 
+                        echo '<td><a class="btn btn-orange btn-rounded waves-effect waves-light">Supprimer</a> <a class="btn btn-danger btn-rounded waves-effect waves-light">Modifier</a></td>
+                        </tr>';
+                        $i++;
+                    }
+ 
+                ?>   
+                        <!-- <tr class="table-active">
+                            <td>1</td>
+                            <td>jessekamba</td>
+                            <td>admin</td>
+                            <td><a class="btn btn-orange btn-rounded waves-effect waves-light">Supprimer</a> <a class="btn btn-danger btn-rounded waves-effect waves-light">Modifier</a></td>
+                            <td><a class="btn btn-orange btn-rounded waves-effect waves-light">Supprimer</a> <a class="btn btn-danger btn-rounded waves-effect waves-light">Modifier</a></td>
+                        </tr>
+                        <tr class="table-info">
+                            <td>2</td>
+                            <td>Dankabeya</td>
+                            <td>admin</td>
+                            <td><a class="btn btn-success btn-rounded waves-effect waves-light">Supprimer</a> <a class="btn btn-danger btn-rounded waves-effect waves-light">Modifier</a></td>
+                        </tr>
+                        <tr class="table-active">
+                            <td>3</td>
+                            <td>admin</td>
+                            <td>admin</td>
+                            <td><a class="btn btn-success btn-rounded waves-effect waves-light">Supprimer</a> <a class="btn btn-danger btn-rounded waves-effect waves-light">Modifier</a></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>admin</td>
+                            <td>admin</td>
+                            <td><a class="btn btn-success btn-rounded waves-effect waves-light">Supprimer</a> <a class="btn btn-danger btn-rounded waves-effect waves-light">Modifier</a></td>
+
+                        </tr> -->
+                    </tbody>
+                </table>
+         
+
+                <!-- <div class="md-form">
+                                        
+                           
+                
+                </div> -->
 
             <footer class="page-footer blue center-on-small-only  blue-gradient">
-
-                    
-
+                        
+            
                     <!--Copyright-->
                         <div class="footer-copyright">
                             <div class="container-fluid">
-                                © 2019 Copyright: <a href=" ">TODO APP </a>
+                                © 2019 Copyright: <a href="#">TODO APP </a>
 
                             </div>
                         </div>

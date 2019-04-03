@@ -21,15 +21,11 @@ class Indexx extends CI_Controller {
 		
 		if($this->session->connected)
 		{
-		$id_user = $this->session->id;
-		$this->load->model('UserModele');
-		$tache = $this->UserModele-> check_user($id_user);
-	   
-		// $data = array("budget"=> $budget);
-
-		// $this->load->view('header');
-		// $this->load->view('utilisateur/accueil', $data);}
-			$this->load->view('AcceuilUserView');}
+			$id_user = $this->session->id;
+			$this->load->model('UserModele');
+			$tache = $this->UserModele-> check_user($id_user);
+		    $this->load->view('AcceuilUserView');
+		}
 	}
 	public function add_user()
 
@@ -68,7 +64,7 @@ class Indexx extends CI_Controller {
 				{	
 					$this->load->model('UserModele');
 					$this->UserModele->create_user($datas);
-					$this->load->view('AcceuilUserView');
+					redirect('indexx/select_data');
 				}
 
 		}
@@ -98,11 +94,10 @@ class Indexx extends CI_Controller {
                     'id' => $user->id,
                     'pseudo' => $user->pseudo,
                     'mdp' => $user->mdp,
-                 
                     'connected' => true
                 );
                 $this->session->set_userdata($datas);
-				redirect('indexx/charger_vue_AcceuilUserView');
+				redirect('indexx/select_data');
 
 			}
 			else{
@@ -223,8 +218,8 @@ class Indexx extends CI_Controller {
 
 	public function modif_tache()
 	{
-		 $id=$_GET['id'];
-		$description=$this->input->post('description');
+			$id=$_GET['id'];
+			$description=$this->input->post('description');
 			$date_debut=$this->input->post('date_debut');
 			$date_fin=$this->input->post('date_fin');
 
@@ -237,16 +232,11 @@ class Indexx extends CI_Controller {
 			$this->load->model('insertion_bdd');
 			$this->insertion_bdd->modifier_tache($id,$datas);
 			echo "tache modifiée avec succes";
-			 
+		}
 
-
-	}
-
-		
-	
- 
-	 
+		public function deconnexion()
+		{
+            $this->session->unset_userdata('connected');
+            redirect();
+        }
 }
-           
-        
-       
