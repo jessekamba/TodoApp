@@ -69,21 +69,21 @@
                                     </div>
                                     
                                     <div class="text-xs-center ">
+                                    
                                         <button class="btn  blue-gradient" type="submit">Se connecter</button>
-                                        
+                                         
+                                        <p>Pas de compte?
+                                        <a href="<?=site_url('indexx/add_user')?>">Creer un compte</a>
+                                        </p>
                                     </div>
+                                    
                             
                                 </div>
                             </div>
                         </form>
-                        
-                
-                
-
+                    
                     <footer class="page-footer blue center-on-small-only  blue-gradient">
-
-                            
-
+ 
                             <!--Copyright-->
                                 <div class="footer-copyright">
                                     <div class="container-fluid">
@@ -93,21 +93,14 @@
                                 </div>
                             <!--/.Copyright-->
 
-                        </footer>
-                    <!--/.Footer-->
+                    </footer>
+                   
 
                 </div>
             </main>
-
-
-            <!-- /Start your project here-->
-
-
-            <!-- SCRIPTS -->
-
-            <!-- JQuery -->
+ 
             <script src="<?= base_url('asset/js/jquery3.js')?>"></script> 
-        <!-- Bootstrap tooltips -->
+        
             <script type="text/javascript" src="<?=base_url('MDB4/js/tether.min.js')?>"></script>
 
             <!-- MDB core JavaScript -->
@@ -119,11 +112,8 @@
                 var el = document.querySelector('.custom-scrollbar');
                 Ps.initialize(el);
             </script>
-
-        
-        
-                <script src="<?= base_url('asset/js/jquery3.js')?>"></script> 
-                <script src="<?= base_url('asset/js/bootstrap.js')?>"></script> 
+            <script src="<?= base_url('asset/js/jquery3.js')?>"></script> 
+            <script src="<?= base_url('asset/js/bootstrap.js')?>"></script> 
                 
     </body>
 </html>

@@ -20,33 +20,38 @@ class Indexx extends CI_Controller {
 		array('required' => 'Veuillez entrer un mot de passe',
 			  'min_length' => '5 caractères minimum'));
 
-		
-		
-		if($this->form_validation->run())
+		if($this->form_validation->run()) 
 	 
-		{
+		{	 
+				
+				$pseudo=$this->input->post('pseudo');
+				$mdp=$this->input->post('mdp');
+				
+				$datas= array(
+				'pseudo'=>$pseudo
+				);
 
-			$pseudo=$this->input->post('pseudo');
-			$mdp=$this->input->post('mdp');
-			
-			$datas= array(
-			  'pseudo'=>$pseudo,
-			   'mdp'=>$mdp);
+				$this->load->model('UserModele');
+				$check = $this->UserModele->check_user($datas);
+	
+				if(count($check) > 0)
+				{
+					echo"login deja utilisé" ;
+				}
+				else
+				{	
+					$this->load->model('UserModele');
+					$this->UserModele->create_user($datas);
+					$this->load->view('AcceuilView');
+				}
 
-		  $this->load->model('UserModele');
-		  $this->UserModele->create_user($datas);
-		  $this->load->view('AcceuilView');
-		  
-	  }
-
-		else
+		}
+	  	else
 		  {
 			$this->load->view('AcceuilUser');
 		  }
 
 	}
-
-	 
 
 	public function authentification()
 	{
