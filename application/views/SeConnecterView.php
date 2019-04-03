@@ -44,7 +44,7 @@
                 <div class="container ">
                     <br><br>
 
-                <form action="<?= site_url('indexx/add_user')?>" method="POST">
+                <form action="<?= site_url('indexx/authentification')?>" method="POST">
                             <div class="card">
                                 <div class="card-block">
                             
@@ -73,7 +73,7 @@
                                         <button class="btn  blue-gradient" type="submit">Se connecter</button>
                                          
                                         <p>Pas de compte?
-                                        <a href="<?=site_url('indexx/add_user')?>">Creer un compte</a>
+                                        <a href="<?=site_url('indexx/charger_vue_se_creer_compte')?>">Creer un compte</a>
                                         </p>
                                     </div>
                                     

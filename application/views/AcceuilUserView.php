@@ -108,7 +108,7 @@
                     <!--Copyright-->
                         <div class="footer-copyright">
                             <div class="container-fluid">
-                                © 2019 Copyright: <a href=" ">TODO APP </a>
+                                © 2019 Copyright: <a href="#">TODO APP </a>
 
                             </div>
                         </div>

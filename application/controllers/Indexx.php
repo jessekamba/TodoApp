@@ -7,11 +7,16 @@ class Indexx extends CI_Controller {
 	public function index()
 	{	//affiche la page d'acceuil
 		
-		$this->load->view('AcceuilUser');
+		$this->load->view('SeConnecterView');
 	}
 
-	public function add_user()
+	public function charger_vue_se_creer_compte()
 	{
+			$this->load->view('CreateAccountView');
+	}
+	public function add_user()
+
+	{	
 		$this->form_validation->set_rules('pseudo','pseudo', 'required|min_length[5]',
 		array('required' => 'Veuillez entrer un pseudo',
 			  'min_length' => '5 caractères minimum'));
@@ -42,13 +47,13 @@ class Indexx extends CI_Controller {
 				{	
 					$this->load->model('UserModele');
 					$this->UserModele->create_user($datas);
-					$this->load->view('AcceuilView');
+					$this->load->view('AcceuilUserView');
 				}
 
 		}
 	  	else
 		  {
-			$this->load->view('AcceuilUser');
+			$this->load->view('CreateAccountView');
 		  }
 
 	}
