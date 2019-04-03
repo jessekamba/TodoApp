@@ -141,12 +141,12 @@ class Indexx extends CI_Controller {
 				'description'=>$description,
 				'id_user'=>$id_user,
 				 'etat'=>1,
-				 
-				 'datecreation'=>date('d-M-Y')
+				 'datecreation'=>date('Y-m-d')
 
 			);
 			$this->load->model('insertion_bdd');
 			$this->insertion_bdd->insert_into_bdd($datas);
+			echo "tache creee avec succes";
 			 
 		}
 
@@ -168,10 +168,13 @@ class Indexx extends CI_Controller {
 	}
 
 	public function select_data()
-	{	//affiche les taches se trouvant dans la bdd sur la view liste_taches
+	{	//affiche les taches se trouvant dans la bdd sur la view AcceuilUserView
+		$id_user = $this->session->id;
+		$this->load->model('UserModele');
+		$user = $this->UserModele-> check_user($id_user);
 		$this->load->model('insertion_bdd');
-		$donnee ['tache']=$this->insertion_bdd->recupere_datas();
-		 $this->load->view('liste_taches',$donnee);
+		$donnee['tache']=$this->insertion_bdd->recuperer_tache($id_user);
+		$this->load->view('AcceuilUserView', $donnee);
 	}
 
 	public function sup_tache()

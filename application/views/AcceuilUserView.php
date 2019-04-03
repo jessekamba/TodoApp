@@ -99,12 +99,23 @@
                 <div style="height: 300px"></div>
               
            
-           
+                <?php
+$i=1;
+ foreach ($tache as $value) {
+
+     # code...
+     echo $i ; 
+     echo  $value->description ; 
+     $i++;
+ }
+
+ 
+?>
+
 
             <footer class="page-footer blue center-on-small-only  blue-gradient">
-
-                    
-
+                        
+            
                     <!--Copyright-->
                         <div class="footer-copyright">
                             <div class="container-fluid">
