@@ -15,6 +15,10 @@ class Indexx extends CI_Controller {
 			$this->load->view('CreateAccountView');
 	}
 
+	public function charger_acceuil()
+	{
+		$this->load->view('AcceuilUserView');
+	}
 	public function charger_vue_AcceuilUserView()
 
 	{		
@@ -58,7 +62,8 @@ class Indexx extends CI_Controller {
 	
 				if(count($check) > 0)
 				{  
-					echo"login deja utilisé" ;
+					echo '<script>alert("Login deja utilisé");</script>';
+					$this->load->view('CreateAccountView');
 				}
 				else
 				{	
@@ -97,16 +102,12 @@ class Indexx extends CI_Controller {
                     'connected' => true
                 );
                 $this->session->set_userdata($datas);
-				redirect('indexx/select_data');
+				redirect('indexx/charger_vue_AcceuilUserView');
 
 			}
 			else{
-				$d = array(
-                    'error_message' => 'Login ou mot de passe incorrect'
-                );
-			  
-                $this->session->set_flashdata($d);
-                redirect('indexx/index');
+				echo '<script>alert("mot de passe ou login incorect");</script>';
+                $this->load->view('seConnecterView');
 		 
             }
 	}
@@ -141,7 +142,11 @@ class Indexx extends CI_Controller {
 			);
 			$this->load->model('insertion_bdd');
 			$this->insertion_bdd->insert_into_bdd($datas);
-			echo "tache creee avec succes";
+			 
+			echo '<script>alert("tache creee avec succes");</script>';
+ 
+			// redirect('indexx/charger_vue_AcceuilUserView');
+			$this->load->view('AcceuilUserview');
 			 
 		}
 
@@ -169,7 +174,7 @@ class Indexx extends CI_Controller {
 		$user = $this->UserModele-> check_user($id_user);
 		$this->load->model('insertion_bdd');
 		$donnee['tache']=$this->insertion_bdd->recuperer_tache($id_user);
-		$this->load->view('AcceuilUserView', $donnee);
+		$this->load->view('liste_tacheView', $donnee);
 	}
 
 	public function sup_tache()

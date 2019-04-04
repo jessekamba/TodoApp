@@ -38,14 +38,16 @@
             <li>
                 <ul class="collapsible collapsible-accordion">
                     
-                    <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-calendar"></i>Taches<i class="fa fa-angle-down rotate-icon"></i></a>
+                    <li>
+                    <a href="<?= site_url('indexx/charger_acceuil')?>" class="waves-effect "><i class="fa fa-home"></i>Acceuil</a>
+                        <a class="collapsible-header waves-effect arrow-r"><i class="fa fa-calendar"></i>Taches<i class="fa fa-angle-down rotate-icon"></i></a>
                         <div class="collapsible-body">
                             <ul>
                                 <li>
-                                    <a href="#" class="waves-effect "><i class="fa fa-plus"></i>Ajouter une tache</a>
+                                    <a href="<?= site_url('indexx/lien_nouvelle_tache')?>" class="waves-effect "><i class="fa fa-plus"></i>Ajouter une tache</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="waves-effect"><i class="fa fa-align-justify"></i>Lister mes taches</a>
+                                    <a href="<?= site_url('indexx/select_data')?>" class="waves-effect"><i class="fa fa-align-justify"></i>Lister mes taches</a>
                                 </li>
                                 
                                  
@@ -78,9 +80,9 @@
 
                
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Profile</a>
+                    <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>  <?=$this->session->pseudo?></a>
                     <div class="dropdown-menu dropdown-primary dd-right" aria-labelledby="dropdownMenu1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                        <a class="dropdown-item" href="#">Se deconnecter</a>
+                        <a class="dropdown-item" href="<?=site_url('indexx/deconnexion')?>">Se deconnecter</a>
                         
                          
                     </div>

@@ -38,14 +38,20 @@
             <li>
                 <ul class="collapsible collapsible-accordion">
                     
-                    <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-calendar"></i>Taches<i class="fa fa-angle-down rotate-icon"></i></a>
+                    <li>
+                        <a href="<?= site_url('indexx/charger_acceuil')?>" class="waves-effect "><i class="fa fa-home"></i>Acceuil</a>
+                        <a class="collapsible-header waves-effect arrow-r"><i class="fa fa-calendar"></i>Taches<i class="fa fa-angle-down rotate-icon"></i></a>
                         <div class="collapsible-body">
                             <ul>
+                               
+                                <li>
+                                  
+                                </li>
                                 <li>
                                     <a href="<?= site_url('indexx/lien_nouvelle_tache')?>" class="waves-effect "><i class="fa fa-plus"></i>Ajouter une tache</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="waves-effect"><i class="fa fa-align-justify"></i>Lister mes taches</a>
+                                    <a href="<?= site_url('indexx/select_data')?>" class="waves-effect"><i class="fa fa-align-justify"></i>Lister mes taches</a>
                                 </li>
                                 
                                  
@@ -96,73 +102,21 @@
     <main>
         <div class="container ">
                
-                           
-                <!-- <div style="height: 300px"></div> -->
-                <table class="table  table-bordered table-danger table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>N</th>
-                            <th>Nom de la tache</th>
-                            <th>Date creation</th>
-                            <th>Etat</th>
-                            <th>Actions</th>
-                        </tr>
+        <table class="table  table-bordered table-info table-striped table-hover">
+                    <thead> 
+                         <tr>
+                            <th> 
+                                <h1>TodoApp votre gestionnaire de taches intelligent</h1> 
+                            </th> 
+                         </tr>
                     </thead>
-                    <tbody>
-                    <?php
-                    $i=1;
-                    foreach ($tache as $value) 
-                    {
-                      echo '<tr class="table-success">';
-                        echo '<td>'.$i .'</td>';
-                        echo '<td>'. $value->description . '</td>';
-                        echo '<td>'.$value->datecreation.'</td>';
-                        echo '<td>'.$value->etat.'</td>'; 
-                        echo '<td><a class="btn btn-orange btn-rounded waves-effect waves-light">Supprimer</a> <a class="btn btn-danger btn-rounded waves-effect waves-light">Modifier</a></td>
-                        </tr>';
-                        $i++;
-                    }
- 
-                ?>   
-                        <!-- <tr class="table-active">
-                            <td>1</td>
-                            <td>jessekamba</td>
-                            <td>admin</td>
-                            <td><a class="btn btn-orange btn-rounded waves-effect waves-light">Supprimer</a> <a class="btn btn-danger btn-rounded waves-effect waves-light">Modifier</a></td>
-                            <td><a class="btn btn-orange btn-rounded waves-effect waves-light">Supprimer</a> <a class="btn btn-danger btn-rounded waves-effect waves-light">Modifier</a></td>
-                        </tr>
-                        <tr class="table-info">
-                            <td>2</td>
-                            <td>Dankabeya</td>
-                            <td>admin</td>
-                            <td><a class="btn btn-success btn-rounded waves-effect waves-light">Supprimer</a> <a class="btn btn-danger btn-rounded waves-effect waves-light">Modifier</a></td>
-                        </tr>
-                        <tr class="table-active">
-                            <td>3</td>
-                            <td>admin</td>
-                            <td>admin</td>
-                            <td><a class="btn btn-success btn-rounded waves-effect waves-light">Supprimer</a> <a class="btn btn-danger btn-rounded waves-effect waves-light">Modifier</a></td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>admin</td>
-                            <td>admin</td>
-                            <td><a class="btn btn-success btn-rounded waves-effect waves-light">Supprimer</a> <a class="btn btn-danger btn-rounded waves-effect waves-light">Modifier</a></td>
+        <table>
+               
+            <div style="height: 250px"></div>
 
-                        </tr> -->
-                    </tbody>
-                </table>
-         
-
-                <!-- <div class="md-form">
-                                        
-                           
-                
-                </div> -->
-
+                 
             <footer class="page-footer blue center-on-small-only  blue-gradient">
                         
-            
                     <!--Copyright-->
                         <div class="footer-copyright">
                             <div class="container-fluid">
@@ -172,7 +126,7 @@
                         </div>
                     <!--/.Copyright-->
 
-                </footer>
+            </footer>
             <!--/.Footer-->
 
         </div>
