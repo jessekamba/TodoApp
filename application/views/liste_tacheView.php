@@ -126,7 +126,8 @@
                                 echo '<td>'. $value->description . '</td>';
                                 echo '<td>'.$value->datecreation.'</td>';
                                 echo '<td>'.$value->etat.'</td>'; 
-                                echo '<td><a class="btn btn-orange btn-rounded waves-effect waves-light">Supprimer</a> <a class="btn btn-danger btn-rounded waves-effect waves-light">Modifier</a></td>
+                                echo '<td><a href="'.site_url('indexx/sup_tache/'.$value -> id).'" class="btn btn-orange btn-rounded waves-effect waves-light">Supprimer</a> <a href=""class="btn btn-danger btn-rounded waves-effect waves-light">Modifier</a></td>
+                                
                                 </tr>';
                                 $i++;
                             }

@@ -19,6 +19,11 @@ class Indexx extends CI_Controller {
 	{
 		$this->load->view('AcceuilUserView');
 	}
+
+	public function charvier_vue_listeTache()
+	{
+		$this->load->view('liste_tacheView');
+	}
 	public function charger_vue_AcceuilUserView()
 
 	{		
@@ -146,7 +151,8 @@ class Indexx extends CI_Controller {
 			echo '<script>alert("tache creee avec succes");</script>';
  
 			// redirect('indexx/charger_vue_AcceuilUserView');
-			$this->load->view('AcceuilUserview');
+			// $this->load->view('AcceuilUserview');
+			$this->load->view('nouvelle_tacheView');
 			 
 		}
 
@@ -178,19 +184,26 @@ class Indexx extends CI_Controller {
 	}
 
 	public function sup_tache()
-	//
+	
 
 	{   //supprime la tache selectionnee
+		// $id_user = $this->session->id;
+		// $this->load->model('UserModele');
+		// $user = $this->UserModele-> check_user($id_user);
+		// $this->load->model('insertion_bdd');
+		// $donnee['tache']=$this->insertion_bdd->recuperer_tache($id_user);
+		
 		$idtache = $this -> uri -> segment(3);
 		$this -> load -> model('insertion_bdd');
 		$this -> insertion_bdd->sup_tache($idtache);
-		echo ('tache supprimée avec succes');
-
-		echo ('<a href="'.site_url('indexx/index').'">&nbspRetour a page d\'acceuil</a>');
+		
+		echo '<script>alert("tache supprimée avec succes");</script>';
+		redirect('indexx/select_data');
+		// $this->load->view('liste_tacheView', $donnee);
+		// $this->load->view('liste_tacheView');
+		
 	
-
-		// redirect('indexx/select_data');
-
+ 
 	}
 
 	public function conf_supp_tache()
