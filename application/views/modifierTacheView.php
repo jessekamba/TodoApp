@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>TodoApp|<?=$this->session->pseudo?></title>
+    <title>TodoApp</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?=base_url('MDB4/css/font-awesome.min.css')?>">
@@ -80,9 +80,9 @@
 
                
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  <i class="fa fa-user"></i> <?=$this->session->pseudo?> </a>
+                    <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>  <?=$this->session->pseudo?></a>
                     <div class="dropdown-menu dropdown-primary dd-right" aria-labelledby="dropdownMenu1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                        <a class="dropdown-item" href="<?=site_url('indexx/deconnexion')?>">Se deconnecter</a> 
+                        <a class="dropdown-item" href="<?=site_url('indexx/deconnexion')?>">Se deconnecter</a>
                         
                          
                     </div>
@@ -97,61 +97,49 @@
 
     <main>
         <div class="container ">
-                <table class="table  table-bordered table-info table-striped table-hover">
-                    <thead> 
-                         <tr>
-                         <th> <h3><em><strong>taches trouvées : <?php $i=0; $nombre=1;
-                            foreach ($tache as $value) {$i++;}echo $i;?><strong> </em></h3></th> 
-                         </tr>
-                    </thead>
-                <table>
-               
-                <table class="table  table-bordered table-danger table-striped table-hover">
-                <!-- ?id='.$_GET['id'] -->
-                    <thead>
-                        <tr>
-                            <th>N</th>
-                            <th>Nom de la tache</th>
-                            <th>Date creation</th>
-                            <th>Etat</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                            $i=1;
-                            foreach ($tache as $value) 
-                            {
-                            echo '<tr class="table-success">';
-                                echo '<td>'.$i .'</td>';
-                                echo '<td>'. $value->description . '</td>';
-                                echo '<td>'.$value->datecreation.'</td>';
-                                echo '<td>'.$value->etat.'</td>'; 
-                                echo '<td><a href="'.site_url('indexx/sup_tache/'.$value -> id).'" class="btn btn-orange btn-rounded waves-effect waves-light">Supprimer</a>'.' <a href="'.site_url('indexx/lien_modifier_tache?id='.$value -> id).'"class="btn btn-danger btn-rounded waves-effect waves-light">Modifier</a></td>
-                               
-                                </tr>';
-                                $i++;
-                            }
-        
-                        ?>   
-                      
-                    </tbody>
-                </table>
-         
-                <div style="height: 30px"></div>
-                <!-- <div class="md-form">
-                                        
-                           
-                
-                </div> -->
+               <br><br><br>
+
+         <form action="<?=site_url('indexx/modif_tache?id='.$_GET['id'])?>" method="POST">
+                    <div class="card">
+                        <div class="card-block">
+                    
+                            <!--Header-->
+                            <div class="form-header blue-gradient">
+                                <h3><i class="fa  fa-edit"></i> Modifier la tache</h3>
+                            </div>
+                    
+                            <!--Body-->
+                           <div class="md-form">
+                                <i class="fa fa-edit"></i> 
+                                <input type="text" name="description"id="form3" class="form-control" value="<?=set_value('description')?>">
+                                <label for="form3">Description de la tache</label>
+                                <div class="alert alert-danger">
+                                    <?= form_error('description','<em>','</em>') ?>
+                                </div>
+
+                            </div>
+                            
+                            <div class="text-xs-center ">
+                                <button class="btn  blue-gradient" type="submit">Modifier</button>
+                                
+                            </div>
+                    
+                        </div>
+                    </div>
+                </form>
+                <div style="height: 100px"></div>
+              
+           
+           
 
             <footer class="page-footer blue center-on-small-only  blue-gradient">
-                        
-            
+
+                    
+
                     <!--Copyright-->
                         <div class="footer-copyright">
                             <div class="container-fluid">
-                                © 2019 Copyright: <a href="#">TODO APP </a>
+                                © 2019 Copyright: <a href=" ">TODO APP </a>
 
                             </div>
                         </div>
@@ -165,7 +153,7 @@
 
 
     <!-- /Start your project here-->
-<script>alert("salut")</script>
+
 
     <!-- SCRIPTS -->
 

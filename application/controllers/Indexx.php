@@ -186,20 +186,21 @@ class Indexx extends CI_Controller {
 	public function sup_tache()
 	
 
-	{   //supprime la tache selectionnee
-		// $id_user = $this->session->id;
-		// $this->load->model('UserModele');
-		// $user = $this->UserModele-> check_user($id_user);
-		// $this->load->model('insertion_bdd');
-		// $donnee['tache']=$this->insertion_bdd->recuperer_tache($id_user);
+	{  
+		//  supprime la tache selectionnee
 		
 		$idtache = $this -> uri -> segment(3);
 		$this -> load -> model('insertion_bdd');
 		$this -> insertion_bdd->sup_tache($idtache);
+		$id_user = $this->session->id;
+		$this->load->model('UserModele');
+		$user = $this->UserModele-> check_user($id_user);
+		$this->load->model('insertion_bdd');
+		$donnee['tache']=$this->insertion_bdd->recuperer_tache($id_user);
 		
-		echo '<script>alert("tache supprimée avec succes");</script>';
-		redirect('indexx/select_data');
-		// $this->load->view('liste_tacheView', $donnee);
+		$d="tache supprimée avec succes";
+		// redirect('indexx/select_data');
+		$this->load->view('liste_tacheView', $donnee,$d);
 		// $this->load->view('liste_tacheView');
 		
 	
@@ -220,7 +221,7 @@ class Indexx extends CI_Controller {
 	{
 		$id=$_GET['id'];
 	 
-		$this->load->view('modifier_tache.php');
+		$this->load->view('modifierTacheView');
 	}
 
 	public function conf_modif_tache()
@@ -236,21 +237,40 @@ class Indexx extends CI_Controller {
 
 	public function modif_tache()
 	{
+		$this->form_validation->set_rules('description','description', 'required|min_length[5]',
+		array('required' => 'La description de la tache est obligatoire',
+			'min_length' => '5 caractères minimum'));
+
+		 
+		if($this->form_validation->run())
+		{
 			$id=$_GET['id'];
 			$description=$this->input->post('description');
-			$date_debut=$this->input->post('date_debut');
-			$date_fin=$this->input->post('date_fin');
+			 
 
 			$datas= array(
-				'date_debut'=>$date_debut,
-				'date_fin'=>$date_fin,
+				 
 				'description'=>$description
 
 			);
+
 			$this->load->model('insertion_bdd');
 			$this->insertion_bdd->modifier_tache($id,$datas);
-			echo "tache modifiée avec succes";
+			$id_user = $this->session->id;
+		$this->load->model('UserModele');
+		$user = $this->UserModele-> check_user($id_user);
+		$this->load->model('insertion_bdd');
+		$donnee['tache']=$this->insertion_bdd->recuperer_tache($id_user);
+			echo '<script>alert("tache modifiée avec succès");</script>';
+			$this->load->view('liste_tacheView',$donnee);
+
 		}
+
+		else
+		{
+			$this->load->view('modifierTacheView');
+		}
+	}
 
 		public function deconnexion()
 		{
